@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -27,14 +29,18 @@ public class PM3 {
     private String lastname;
     private String CF;
     private String email;
-    private ArrayList<User> users_assigned;
     
-    public PM3(String name, String lastname, String CF, String email) {
+    @ManyToOne
+    //@JoinColumn(name = "pm2_id")
+    PM2 pm2;
+
+    
+    public PM3(String name, String lastname, String CF, String email, PM2 pm2_new) {
         this.name = name;
         this.lastname = lastname;
         this.CF = CF;
         this.email = email;
-        this.users_assigned = new ArrayList<User>();
+        this.pm2 = pm2_new;
     }
     
 }
