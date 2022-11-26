@@ -1,14 +1,20 @@
 package com.spring.backend.domain;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +30,7 @@ public class PM3 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Column(name = "pm3_id")
     private long id;
     private String name;
     private String lastname;
@@ -31,8 +38,20 @@ public class PM3 {
     private String email;
     
     @ManyToOne
-    //@JoinColumn(name = "pm2_id")
     PM2 pm2;
+
+    //@ManyToMany
+    /*@JoinTable(
+        name = "pm3_users",
+        joinColumns = @JoinColumn(name = "users_id"),
+        inverseJoinColumns = @JoinColumn(name = "pm3_id")
+    )*/
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "pm3_users", 
+            joinColumns = { @JoinColumn(name = "pm3_id") }, 
+            inverseJoinColumns = { @JoinColumn(name = "users_id") })
+    Set<User> users_assigned = new HashSet<>();
 
     
     public PM3(String name, String lastname, String CF, String email, PM2 pm2_new) {
