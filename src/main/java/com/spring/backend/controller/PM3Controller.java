@@ -1,10 +1,6 @@
 package com.spring.backend.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +73,7 @@ public class PM3Controller {
         PM3 pm3_where_to_add = pm3Service.findById(pm3_id);
         for (int i = 0; i < users.size(); i++) {
             User user_tmp_to_find = userService.findById(users.get(i));
-            Set tmp_set = pm3_where_to_add.getUsers_assigned();
+            Set<User> tmp_set = pm3_where_to_add.getUsers_assigned();
             tmp_set.add(user_tmp_to_find);
             pm3_where_to_add.setUsers_assigned(tmp_set);
             pm3Service.saveOne(pm3_where_to_add);

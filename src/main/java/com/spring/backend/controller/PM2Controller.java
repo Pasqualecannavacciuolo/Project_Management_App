@@ -1,9 +1,5 @@
 package com.spring.backend.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.domain.PM2;
-import com.spring.backend.domain.PM3;
 import com.spring.backend.service.PM2Service;
 import com.spring.backend.service.PM3Service;
 
