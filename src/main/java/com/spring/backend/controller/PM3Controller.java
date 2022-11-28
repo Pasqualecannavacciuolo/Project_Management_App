@@ -50,16 +50,17 @@ public class PM3Controller {
 
     /**
      * Aggiunge al PM di tipo 3 un collegamento al PM di tipo 2 che lo gestisce
-     * @param pm_3
-     * @param pm2_id
-     * @return
+     * @param pm3_id -- > PM di tipo 3 a cui aggiungere un superiore (PM di tipo 2)
+     * @param pm2_id --> PM di tipo 2 da aggiungere come superiore al PM di tipo 3
+     * @return --> Il PM di tipo 3 aggiornato con il superiore aggiunto
      */
-    @PostMapping("/pm3/saveOne/{pm2_id}")
-    ResponseEntity<PM3> saveOne(@RequestBody PM3 pm_3, @PathVariable Long pm2_id) {
+    @PostMapping("/pm3/savePm2/{pm3_id}/{pm2_id}")
+    ResponseEntity<PM3> savePm2(@PathVariable Long pm3_id, @PathVariable Long pm2_id) {
+        PM3 pm3_to_find = pm3Service.findById(pm3_id);
         PM2 pm2_to_find = pm2Service.findById(pm2_id);
-        pm_3.setPm2(pm2_to_find);
-        PM3 pm_3_new = pm3Service.saveOne(pm_3);
-        return new ResponseEntity<>(pm_3_new, HttpStatus.OK);
+        pm3_to_find.setPm2(pm2_to_find);
+        PM3 pm_3_updated = pm3Service.saveOne(pm3_to_find);
+        return new ResponseEntity<>(pm_3_updated, HttpStatus.OK);
     }
 
     /**
