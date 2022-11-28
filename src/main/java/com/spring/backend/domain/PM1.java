@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,27 +20,25 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 
 @Entity
-@Table(name="pms2")
-public class PM2 {
+@Table(name="pms1")
+
+public class PM1 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    
     private long id;
     private String name;
     private String lastname;
     private String CF;
     private String email;
 
-    @ManyToOne
-    PM1 pm1;
-
     @OneToMany
-    @JoinColumn(name = "pm2_id")
+    @JoinColumn(name = "pm1_id")
     @JsonIgnore
-    private Set<PM3> pms3_assigned;
+    private Set<PM3> pms2_assigned;
     
-    public PM2(String name, String lastname, String CF, String email) {
+    public PM1(String name, String lastname, String CF, String email) {
         this.name = name;
         this.lastname = lastname;
         this.CF = CF;

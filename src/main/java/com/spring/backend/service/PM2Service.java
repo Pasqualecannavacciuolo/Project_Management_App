@@ -13,8 +13,7 @@ public class PM2Service {
 
     @Autowired
     PM2Repository pm2Repository;
-    @Autowired
-    PM3Service pm3Service;
+
 
     public PM2 findById(Long id) {
         return pm2Repository.findById(id).orElse(null);
