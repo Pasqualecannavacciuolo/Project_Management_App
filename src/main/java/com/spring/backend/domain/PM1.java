@@ -36,7 +36,7 @@ public class PM1 {
     @OneToMany
     @JoinColumn(name = "pm1_id")
     @JsonIgnore
-    private Set<PM3> pms2_assigned;
+    private Set<PM2> pms2_assigned;
     
     public PM1(String name, String lastname, String CF, String email) {
         this.name = name;
