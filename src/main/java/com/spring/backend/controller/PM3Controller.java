@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.backend.domain.PM2;
+
 import com.spring.backend.domain.PM3;
 import com.spring.backend.domain.User;
 import com.spring.backend.service.PM2Service;
@@ -56,10 +56,7 @@ public class PM3Controller {
      */
     @PostMapping("/pm3/savePm2/{pm3_id}/{pm2_id}")
     ResponseEntity<PM3> savePm2(@PathVariable Long pm3_id, @PathVariable Long pm2_id) {
-        PM3 pm3_to_find = pm3Service.findById(pm3_id);
-        PM2 pm2_to_find = pm2Service.findById(pm2_id);
-        pm3_to_find.setPm2(pm2_to_find);
-        PM3 pm_3_updated = pm3Service.saveOne(pm3_to_find);
+        PM3 pm_3_updated = pm3Service.savePm2(pm3_id, pm2_id);
         return new ResponseEntity<>(pm_3_updated, HttpStatus.OK);
     }
 
